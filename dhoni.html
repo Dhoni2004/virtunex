@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-center">Factorial Calculator</h1>
+        <input type="number" id="numberInput" placeholder="Enter a positive integer" class="w-full p-2 border border-gray-300 rounded mb-4">
+        <div class="flex space-x-4 mb-6">
+            <button onclick="calculateFactorial('iterative')" class="flex-1 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Iterative</button>
+            <button onclick="calculateFactorial('recursive')" class="flex-1 bg-green-500 text-white p-2 rounded hover:bg-green-600">Recursive</button>
+        </div>
+        <div id="result" class="text-center text-lg font-semibold"></div>
+    </div>
+
+    <script>
+        function calculateFactorial(method) {
+            const input = document.getElementById('numberInput').value;
+            const number = parseInt(input);
+
+            if (isNaN(number) || number < 0) {
+                document.getElementById('result').innerText = 'Please enter a valid positive integer.';
+                return;
+            }
+
+            let factorial;
+            if (method === 'iterative') {
+                factorial = iterativeFactorial(number);
+            } else {
+                factorial = recursiveFactorial(number);
+            }
+
+            document.getElementById('result').innerText = Factorial (${method}): ${factorial};
+        }
+
+        function iterativeFactorial(n) {
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+
+        function recursiveFactorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * recursiveFactorial(n - 1);
+        }
+    </script>
+</body>
+</html>
